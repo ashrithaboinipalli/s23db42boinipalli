@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p
+   - let results=[{Book_Name: "2 States",Book_rate:205,Author:"CBhagath"},{Book_Name: "HarryPotter",Book_rate:300,Author:"J.K Rowling"},{Book_Name: "400Days",Book_rate:400,Author:"ChetanB"}]
+    div(class="container-fliud")
+        div(class="row")
+            each item,ind in results 
+                div(class="col-sm-2" onclick=`buy(${ind})`)  
+                    p Name  #{item.Book_Name}
+                    p $   #{item.Book_rate}
+                    p Author  #{item.Author}
+    each ite,index in results
+        p value at index #{index} is : #{ite.Book_Name},#{ite.Book_rate},#{ite.Author}
+    script. 
+        function buy(i){
+            alert("You purchased item "+(i+1))
+        }                
+                
+
+   
