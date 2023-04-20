@@ -9,5 +9,7 @@ router.get('/detail', Books_controlers.Books_view_one_Page);
 router.get('/create', Books_controlers.Books_create_Page);
 /* GET create update page */
 router.get('/update', Books_controlers.Books_update_Page);
+/* GET delete Books page */
+router.get('/delete', Books_controlers.Books_delete_Page);
 
 module.exports = router;

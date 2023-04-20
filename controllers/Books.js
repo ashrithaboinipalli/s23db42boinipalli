@@ -150,6 +150,20 @@ exports.Books_update_Page = async function(req, res) {
     }
     };
 
+    exports.Books_delete_Page = async function(req, res) {
+        console.log("Delete view for id " + req.query.id)
+        try{
+        result = await Books.findById(req.query.id)
+        res.render('Booksdelete', { title: 'Books Delete', toShow:
+        result });
+        }
+        catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+        }
+        };
+       
+        
 
 
 
