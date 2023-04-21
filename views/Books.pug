@@ -7,16 +7,14 @@ block content
     div(class="container-fliud")
         div(class="row")
             each item,ind in result 
-                div(class="col-sm-2" onclick=`buy(${ind})`)  
+                - let destination = `dispatch(\"/Books/update?id=${item._id}\")`
+                div(class="col-sm-2" class="m-1")  
                     p Name  #{item.Book_Name}
                     p $   #{item.Book_rate}
                     p Author  #{item.Author}
-    each ite,index in result
-        p value at index #{index} is : #{ite.Book_Name},#{ite.Book_rate},#{ite.Author}
+                    button.btn( class="btn-primary ml-1", onclick= destination) Update
     script. 
-        function buy(i){
-            alert("You purchased item "+(i+1))
-        }                
-                
-
-   
+        function dispatch(path){
+        console.log(path);
+        window.location.href=path;
+        }
