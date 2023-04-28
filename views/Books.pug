@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= title
-  p
-   - let result=results
+  
+    - let result=results
     div(class="container-fliud")
         div(class="row")
             each item,ind in result 
@@ -17,20 +17,26 @@ block content
 
 block content
   h1= title
-  -let items = results
-  div(class="container-fluid")
-   div(class="row m-1")
-    each item in items
-     - let destination = `dispatch(\"/Books/update?id=${item._id}\")`
-     - let distance  = `dispatch(\"/Books/delete?id=${item._id}\")`
-     - let day  = `dispatch(\"/Books/detailid=${item._id}\")`
-     div(class="row-sm-2", class="m-1") Item #{item.Book_Name}(#{item.Book_rate}) is #{item.Author}
-     p 
-      button.btn( class="btn-primary ml-1", onclick= destination) Update
-      p 
-      button.btn( class="btn-primary ml-1", onclick= distance) delete 
-      p 
-      button.btn( class="btn-primary ml-1", onclick= day) detail
+  p
+  - let start = `dispatch(\"/Books/create\")`
+  p
+    button.btn( class="btn-primary ml-1", onclick= start) Create
+  p
+   
+    -let items = results
+    div(class="container-fluid")
+    div(class="row m-1")
+        each item in items
+            - let destination = `dispatch(\"/Books/update?id=${item._id}\")`
+            - let port  = `dispatch(\"/Books/delete?id=${item._id}\")`
+            - let sort  = `dispatch(\"/Books/detail?id=${item._id}\")`
+            div(class="row-sm-2", class="m-1") Item #{item.Book_Name}(#{item.Book_rate}) is #{item.Author}
+            p 
+             button.btn( class="btn-primary ml-1", onclick= destination) Update
+            p 
+             button.btn( class="btn-primary ml-1", onclick= port) delete 
+            p 
+             button.btn( class="btn-primary ml-1", onclick= sort) detail
 
 
   script.
