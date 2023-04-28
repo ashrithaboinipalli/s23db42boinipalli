@@ -7,14 +7,33 @@ block content
     div(class="container-fliud")
         div(class="row")
             each item,ind in result 
-                - let destination = `dispatch(\"/Books/update?id=${item._id}\")`
-                div(class="col-sm-2" class="m-1")  
-                    p Name  #{item.Book_Name}
-                    p $   #{item.Book_rate}
+                div(class="col-sm-2" onclick=`buy(${ind})`)  
+                    p Book_Name  #{item.Book_Name}
+                    p Book_rate   #{item.Book_rate}
                     p Author  #{item.Author}
-                    button.btn( class="btn-primary ml-1", onclick= destination) Update
-    script. 
-        function dispatch(path){
-        console.log(path);
-        window.location.href=path;
-        }
+
+
+    
+
+block content
+  h1= title
+  -let items = results
+  div(class="container-fluid")
+   div(class="row m-1")
+    each item in items
+     - let destination = `dispatch(\"/Books/update?id=${item._id}\")`
+     - let distance  = `dispatch(\"/Books/delete?id=${item._id}\")`
+     - let day  = `dispatch(\"/Books/detailid=${item._id}\")`
+     div(class="row-sm-2", class="m-1") Item #{item.Book_Name}(#{item.Book_rate}) is #{item.Author}
+     p 
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
+      p 
+      button.btn( class="btn-primary ml-1", onclick= distance) delete 
+      p 
+      button.btn( class="btn-primary ml-1", onclick= day) detail
+
+
+  script.
+   function dispatch(path){
+     window.location.href=path
+   }
